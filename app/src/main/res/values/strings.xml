@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Buy The Best</string>
+    <string name="title_home">Home</string>
+    <string name="title_category">Profile</string>
+    <string name="title_cart">Cart</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="phonenum_hint">Phone Number</string>
+    <string name="otp_hint">Enter OTP</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="new_user_register"><u>New User? Register here>></u></string>
+    <string name="resend_otp"><u>Resend OTP</u></string>
+    <string name="sendotp_button">Send OTP</string>
+    <string name="signIn_button">Sign In</string>
+    <string name="signUp_button">Sign Up</string>
+    <string name="add_user"><u>Add New User</u></string>
+    <string name="field_required">This field is required.</string>
+    <string name="shop_by_categories">Shop By Categories</string>
+
+</resources>
