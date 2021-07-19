@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGreen"
+    android:background="@color/dullWhite"
     tools:context=".activity.LoginActivity">
 
     <androidx.cardview.widget.CardView
@@ -30,7 +30,7 @@
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/grocery" />
+                android:src="@mipmap/btb_launcher_round" />
 
             <EditText
                 android:layout_width="match_parent"

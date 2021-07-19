@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
-    android:layout_margin="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="2dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -14,8 +15,8 @@
         android:layout_gravity="center"
         android:orientation="vertical">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="70dp"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
                 android:id="@+id/categoriesImage"
                 android:layout_gravity="center"
                 android:src="@drawable/edible_oil"
@@ -25,12 +26,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 android:id="@+id/categoriesTitle"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textAlignment="center"
                 android:fontFamily="@font/lato_bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"/>
 
     </LinearLayout>

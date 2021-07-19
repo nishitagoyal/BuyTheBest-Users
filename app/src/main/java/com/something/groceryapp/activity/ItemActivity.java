@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,17 +33,20 @@ public class ItemActivity extends AppCompatActivity {
     FirebaseDatabase rootnode;
     DatabaseReference reference, itemReference;
     String categoryName,categoryKey;
+    TextView txt_item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         categoryName = intent.getStringExtra("categoryName");
         categoryKey = intent.getStringExtra("categoryKey");
-        actionBar.setTitle(categoryName);
+        txt_item = findViewById(R.id.txt_heading);
+        txt_item.setText(categoryName);
+//        actionBar.setTitle(categoryName);
         initViews();
     }
 
