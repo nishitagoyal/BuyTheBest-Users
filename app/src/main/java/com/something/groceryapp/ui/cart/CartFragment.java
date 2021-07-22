@@ -48,8 +48,12 @@ import com.something.groceryapp.model.Categories;
 import com.something.groceryapp.model.OrderPlaced;
 import com.something.groceryapp.model.Shared;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CartFragment extends Fragment {
 
@@ -138,7 +142,7 @@ public class CartFragment extends Fragment {
 
     private void uploadOrderToFirebase(String orderAddress, String orderedItems) {
         String order_key = databaseReference.push().getKey();
-        OrderPlaced orderPlaced = new OrderPlaced(orderAddress,orderedItems,order_key);
+        OrderPlaced orderPlaced = new OrderPlaced(orderAddress,orderedItems,order_key,"PENDING",currentDate());
         databaseReference.child("orders_placed").child(order_key).setValue(orderPlaced).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -204,6 +208,14 @@ public class CartFragment extends Fragment {
             }
         });
 
+    }
+
+    public String currentDate() {
+        Locale.setDefault(Locale.ENGLISH);
+        DateFormat date = new SimpleDateFormat("dd-MMM-yy", Locale.getDefault());
+        // you can get seconds by adding  "...:ss" to it
+        Date todayDate = new Date();
+        return date.format(todayDate);
     }
 
     public void removeItem(String item_cart_key){

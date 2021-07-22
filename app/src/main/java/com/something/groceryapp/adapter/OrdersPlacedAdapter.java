@@ -1,6 +1,7 @@
 package com.something.groceryapp.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,12 @@ public class OrdersPlacedAdapter extends RecyclerView.Adapter<OrdersPlacedAdapte
         OrderPlaced orderPlacedItem = orderPlacedList.get(position);
         holder.orderAddress.setText(orderPlacedItem.getOrder_address());
         holder.orderItems.setText(orderPlacedItem.getOrder_items());
+        holder.orderDate.setText("Ordered on: " + orderPlacedItem.getOrder_date());
+        holder.orderStatus.setText(orderPlacedItem.getOrder_status());
+        if(orderPlacedItem.getOrder_status().equalsIgnoreCase("PENDING"))
+            holder.orderStatus.setTextColor(Color.RED);
+        else if(orderPlacedItem.getOrder_status().equalsIgnoreCase("DELIVERED"))
+            holder.orderStatus.setTextColor(Color.GREEN);
     }
 
     @Override
@@ -51,10 +58,15 @@ public class OrdersPlacedAdapter extends RecyclerView.Adapter<OrdersPlacedAdapte
 
         private TextView orderAddress;
         private TextView orderItems;
+        private TextView orderStatus;
+        private TextView orderDate;
+
 
         public OrderPlacedViewHolder(@NonNull View itemView) {
             super(itemView);
             orderAddress = itemView.findViewById(R.id.order_recipient_textview);
             orderItems = itemView.findViewById(R.id.order_details_textview);
+            orderStatus = itemView.findViewById(R.id.status_name);
+            orderDate = itemView.findViewById(R.id.order_date);
         }
     }}
