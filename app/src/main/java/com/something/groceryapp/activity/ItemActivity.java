@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.something.groceryapp.R;
 import com.something.groceryapp.adapter.CategoriesAdapter;
 import com.something.groceryapp.adapter.ItemsAdapter;
+import com.something.groceryapp.model.Cart;
 import com.something.groceryapp.model.GroceryItem;
+import com.something.groceryapp.model.Shared;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -30,8 +35,9 @@ public class ItemActivity extends AppCompatActivity {
     ItemsAdapter itemsAdapter;
     RecyclerView itemRecyclerView;
     FirebaseDatabase rootnode;
-    DatabaseReference reference, itemReference;
+    DatabaseReference reference, itemReference, addToCartReference;
     String categoryName,categoryKey;
+    Shared shared;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,8 @@ public class ItemActivity extends AppCompatActivity {
         itemRecyclerView.setAdapter(itemsAdapter);
         rootnode = FirebaseDatabase.getInstance();
         reference = rootnode.getReference("categories");
+        addToCartReference = rootnode.getReference("users");
+        shared = new Shared(ItemActivity.this);
         populateList();
 
     }
@@ -70,14 +78,12 @@ public class ItemActivity extends AppCompatActivity {
                 }
                 itemRecyclerView.setAdapter(new ItemsAdapter(ItemActivity.this, groceryItems,ItemActivity.this));
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-//        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        inputMethodManager.hideSoftInputFromWindow(submitButton.getWindowToken(), 0);
+
     }
 
     @Override
@@ -88,5 +94,25 @@ public class ItemActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addToCart(String itemName, String itemPrice, int no_of_items, int itemTotalPrice)
+    {
+        String user_key = shared.getUserKeyShared();
+        String item_cart_key = addToCartReference.push().getKey();
+        Cart cartHelper = new Cart(itemName,itemPrice,no_of_items,item_cart_key,itemTotalPrice);
+        addToCartReference.child(user_key).child("add_to_cart").child(item_cart_key).setValue(cartHelper).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ItemActivity.this,"Item added to cart",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(ItemActivity.this, "Failed to add item. Please try again later.", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
     }
 }

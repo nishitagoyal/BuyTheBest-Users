@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.something.groceryapp.R;
 import com.something.groceryapp.model.Cart;
+import com.something.groceryapp.ui.cart.CartFragment;
 
 import java.util.List;
 
@@ -21,14 +23,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     Context mContext;
     List<Cart> cartList;
-//    Integer[] items = new Integer[]{1,2,3,4};
-//    ArrayAdapter<Integer> adapter;
+    CartFragment cartFragment;
 
-    public CartAdapter(Context mContext, List<Cart> cartList) {
+    public CartAdapter(Context mContext, List<Cart> cartList, CartFragment cartFragment) {
         this.mContext = mContext;
         this.cartList = cartList;
-//        adapter = new ArrayAdapter<Integer>(mContext,android.R.layout.simple_spinner_item, items);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.cartFragment = cartFragment;
 
     }
 
@@ -43,8 +43,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        holder.cartItemDetails.setText(cartList.get(position).getItemDetail() + "\n" + cartList.get(position).getItemPrice());
-        holder.cartTotalPriceDetails.setText(cartList.get(position).getItemTotalPrice());
+        Cart cartItem = cartList.get(position);
+        holder.cartItemDetails.setText(cartItem.getItemName() + "\n"  + cartItem.getItemPrice());
+        holder.cartTotalPriceDetails.setText("Qty: " + String.valueOf(cartItem.getItemQty()) + "\n" + "Rs. " + cartItem.getItemTotalPrice());
+        holder.remove_cart_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cartFragment.removeItem(cartItem.getItem_cart_key());
+            }
+        });
     }
 
     @Override
@@ -56,24 +63,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         private TextView cartItemDetails;
         private TextView cartTotalPriceDetails;
-//        private Spinner quantitySpinner;
+        private ImageView remove_cart_iv;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             cartItemDetails = itemView.findViewById(R.id.item_detail_text);
             cartTotalPriceDetails = itemView.findViewById(R.id.cart_total_text);
-//            quantitySpinner = itemView.findViewById(R.id.quantity_spinner);
-//            quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                    //do something
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//
-//                }
-//            });
+            remove_cart_iv = itemView.findViewById(R.id.cart_item_cancel);
         }
     }
 }

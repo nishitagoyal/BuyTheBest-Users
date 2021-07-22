@@ -41,7 +41,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
-
         Categories categories = categoriesList.get(position);
         Uri categoryUri = Uri.parse(categories.getCategoryImage());
         Picasso.get().load(categoryUri).into(holder.iv_category_image);

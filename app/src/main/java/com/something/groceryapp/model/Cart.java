@@ -2,38 +2,56 @@ package com.something.groceryapp.model;
 
 public class Cart {
 
-    private String ItemDetail;
-    private String ItemPrice;
-    private String ItemTotalPrice;
+    String itemName, itemPrice, item_cart_key;
+    int itemQty, itemTotalPrice;
 
-    public Cart(String itemDetail, String itemPrice, String itemTotalPrice) {
-        ItemDetail = itemDetail;
-        ItemPrice = itemPrice;
-        ItemTotalPrice = itemTotalPrice;
+    public Cart() {}
+    public Cart(String itemName, String itemPrice, int itemQty, String item_cart_key, int itemTotalPrice) {
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+        this.itemQty = itemQty;
+        this.item_cart_key = item_cart_key;
+        this.itemTotalPrice = itemTotalPrice;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getItemPrice() {
-        return ItemPrice;
+        return itemPrice;
     }
 
     public void setItemPrice(String itemPrice) {
-        ItemPrice = itemPrice;
+        this.itemPrice = itemPrice;
     }
 
-    public String getItemDetail() {
-        return ItemDetail;
+    public int getItemQty() {
+        return itemQty;
     }
 
-    public void setItemDetail(String itemDetail) {
-        ItemDetail = itemDetail;
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
     }
 
-    public String getItemTotalPrice() {
-        return ItemTotalPrice;
+    public String getItem_cart_key() {
+        return item_cart_key;
     }
 
-    public void setItemTotalPrice(String itemTotalPrice) {
-        ItemTotalPrice = itemTotalPrice;
+    public void setItem_cart_key(String item_cart_key) {
+        this.item_cart_key = item_cart_key;
+    }
+
+    public int getItemTotalPrice() {
+        return itemTotalPrice;
+    }
+
+    public void setItemTotalPrice(int itemTotalPrice) {
+        this.itemTotalPrice = itemTotalPrice;
     }
 }
 

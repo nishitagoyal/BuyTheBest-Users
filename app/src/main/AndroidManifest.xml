@@ -6,13 +6,15 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/btb_launcher_round"
-        tools:replace="android:icon,android:theme"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/btb_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GroceryApp">
-        <activity android:name=".activity.ConfirmationActivity"
-            android:theme="@style/Theme.GroceryApp.NoActionBar"></activity>
+        android:theme="@style/Theme.GroceryApp"
+        tools:replace="android:icon,android:theme">
+        <activity android:name=".activity.OrdersPlacedActivity"></activity>
+        <activity
+            android:name=".activity.ConfirmationActivity"
+            android:theme="@style/Theme.GroceryApp.NoActionBar" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.GroceryApp.NoActionBar">
@@ -28,7 +30,7 @@
             android:theme="@style/Theme.GroceryApp.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/Theme.GroceryApp.NoActionBar"></activity>
+            android:theme="@style/Theme.GroceryApp.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name" />

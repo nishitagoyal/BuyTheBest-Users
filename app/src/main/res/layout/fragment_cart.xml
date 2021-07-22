@@ -8,6 +8,14 @@
     tools:context=".ui.cart.CartFragment"
     android:layout_marginBottom="?attr/actionBarSize">
 
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/empty_cart"
+        android:visibility="gone"
+        android:src="@drawable/cart_is_empty"
+        android:layout_centerInParent="true"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartListRecyclerView"
         android:layout_width="391dp"
@@ -25,6 +33,7 @@
         android:layout_height="80dp"
         android:layout_margin="20dp"
         android:id="@+id/place_order_card"
+        android:visibility="gone"
         app:cardCornerRadius="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true">
@@ -41,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Total \n Rs 60.00"
+                android:text="Total \n Rs 0.00"
                 android:layout_gravity="center_vertical"
                 android:textStyle="bold"
                 android:fontFamily="@font/lato"

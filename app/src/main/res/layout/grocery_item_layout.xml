@@ -58,6 +58,7 @@
             android:layout_marginEnd="10dp"
             app:textColor="@color/white"
             android:gravity="center"
+            android:id="@+id/qty_elegant_number"
             app:backGroundColor="@color/lightGreen"
             app:backgroundDrawable="@drawable/spinner_border"/>
 

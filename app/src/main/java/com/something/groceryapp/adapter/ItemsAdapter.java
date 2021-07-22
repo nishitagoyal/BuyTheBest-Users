@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.something.groceryapp.R;
 import com.something.groceryapp.activity.ItemActivity;
 import com.something.groceryapp.model.Categories;
@@ -57,10 +59,14 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //do something
-                Toast.makeText(mContext,"Item added to cart",Toast.LENGTH_SHORT).show();
                 holder.addButton.setText("Added");
                 holder.addButton.setEnabled(false);
+                String itemName = holder.itemText.getText().toString();
+                String itemPrice = holder.itemPrice.getText().toString();
+                int price = Integer.parseInt(itemPrice.substring(4,itemPrice.length()));
+                int no_of_items = Integer.parseInt(holder.elegantNumberButton.getNumber());
+                int itemTotalPrice = price*no_of_items;
+                itemActivity.addToCart(itemName,itemPrice,no_of_items,itemTotalPrice);
             }
         });
     }
@@ -77,6 +83,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         private TextView itemText;
         private TextView itemPrice;
         private Button addButton;
+        private ElegantNumberButton elegantNumberButton;
 
         public ItemsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +91,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
             itemText = itemView.findViewById(R.id.itemTitle);
             itemPrice = itemView.findViewById(R.id.itemPrice);
             addButton = itemView.findViewById(R.id.item_add_cart_button);
+            elegantNumberButton = itemView.findViewById(R.id.qty_elegant_number);
         }
     }
 }

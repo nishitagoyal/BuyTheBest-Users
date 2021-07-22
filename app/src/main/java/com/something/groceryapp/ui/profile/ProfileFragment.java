@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.something.groceryapp.R;
 import com.something.groceryapp.activity.LoginActivity;
 import com.something.groceryapp.activity.MainActivity;
+import com.something.groceryapp.activity.OrdersPlacedActivity;
 import com.something.groceryapp.model.Shared;
 
 public class ProfileFragment extends Fragment {
@@ -42,6 +43,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //do something
+                Intent intent = new Intent(getActivity(), OrdersPlacedActivity.class);
+                startActivity(intent);
             }
         });
         logoutLayout.setOnClickListener(new View.OnClickListener() {

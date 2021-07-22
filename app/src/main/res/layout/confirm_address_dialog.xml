@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/order_placed_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_cancel_24" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:text="Confirm Order Details"
+            android:fontFamily="@font/lato"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/order_address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/darkGreen"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/darkGreen"
+            android:layout_margin="20dp"
+            android:hint="Address Details"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/order_address_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/order_items"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/darkGreen"
+            app:hintTextColor="@color/darkGreen"
+            app:boxBackgroundColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Ordered Items">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/order_items_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDIT"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/editButton"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONFIRM"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/confirmButton"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
