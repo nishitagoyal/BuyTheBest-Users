@@ -47,6 +47,8 @@ public class OrdersPlacedAdapter extends RecyclerView.Adapter<OrdersPlacedAdapte
             holder.orderStatus.setTextColor(Color.RED);
         else if(orderPlacedItem.getOrder_status().equalsIgnoreCase("DELIVERED"))
             holder.orderStatus.setTextColor(Color.GREEN);
+        else if(orderPlacedItem.getOrder_status().equalsIgnoreCase("IN PROCESS"))
+            holder.orderStatus.setTextColor(Color.YELLOW);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +41,7 @@ public class HomeFragment extends Fragment {
     ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
     DatabaseReference databaseReference;
+    ProgressBar progressBar;
 
     public HomeFragment(){}
 
@@ -58,6 +60,7 @@ public class HomeFragment extends Fragment {
                 sliderHandler.postDelayed(sliderRunnable,2000);
             }
         });
+        progressBar = root.findViewById(R.id.categories_progress);
         return root;
 
     }
@@ -90,6 +93,7 @@ public class HomeFragment extends Fragment {
                     categoriesList.add(categories);
                 }
                 categoriesRecyclerView.setAdapter(new CategoriesAdapter(getContext(),categoriesList,this::OnItemClick));
+                progressBar.setVisibility(View.GONE);
             }
 
             public void OnItemClick(int position) {

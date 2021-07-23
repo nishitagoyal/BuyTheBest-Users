@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".ui.cart.CartFragment">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/orders_progress"
+        android:layout_centerInParent="true"/>
+
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -19,7 +25,6 @@
         android:id="@+id/ordersListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/place_order_card"
         android:layout_margin="10dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

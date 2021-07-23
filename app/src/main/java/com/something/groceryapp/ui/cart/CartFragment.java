@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,8 @@ import com.something.groceryapp.model.Categories;
 import com.something.groceryapp.model.OrderPlaced;
 import com.something.groceryapp.model.Shared;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,13 +65,15 @@ public class CartFragment extends Fragment {
     LinearLayout placeOrderLayout;
     ImageView emptyCartImage;
     CardView placeOrderCard;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, allOrdersReference;
     Shared shared;
     TextView totalPriceText;
     int total;
     String orderAddress, orderedItems;
     DisplayMetrics metrics;
+    ProgressBar progressBar;
     int width, height;
+    String user_key;
 
     public CartFragment() {}
 
@@ -81,6 +86,7 @@ public class CartFragment extends Fragment {
         emptyCartImage = root.findViewById(R.id.empty_cart);
         placeOrderCard = root.findViewById(R.id.place_order_card);
         totalPriceText = root.findViewById(R.id.total_text);
+        progressBar = root.findViewById(R.id.cart_progress);
         placeOrderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,12 +148,20 @@ public class CartFragment extends Fragment {
 
     private void uploadOrderToFirebase(String orderAddress, String orderedItems) {
         String order_key = databaseReference.push().getKey();
+        String all_order_key = allOrdersReference.push().getKey();
         OrderPlaced orderPlaced = new OrderPlaced(orderAddress,orderedItems,order_key,"PENDING",currentDate());
         databaseReference.child("orders_placed").child(order_key).setValue(orderPlaced).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     databaseReference.child("add_to_cart").removeValue();
+                    OrderPlaced allOrderPlaced = new OrderPlaced(orderAddress,orderedItems,order_key,"PENDING",currentDate(),all_order_key,user_key);
+                    allOrdersReference.child(all_order_key).setValue(allOrderPlaced).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+                            //do something
+                        }
+                    });
                     Intent intent = new Intent(getActivity(),ConfirmationActivity.class);
                     startActivity(intent);
                 } else {
@@ -155,6 +169,7 @@ public class CartFragment extends Fragment {
                 }
             }
         });
+
     }
 
     @Override
@@ -162,10 +177,11 @@ public class CartFragment extends Fragment {
         super.onCreate(savedInstanceState);
         cartList = new ArrayList<>();
         shared = new Shared(getContext());
-        String  user_key = shared.getUserKeyShared();
+        user_key = shared.getUserKeyShared();
         orderAddress = shared.getUserNameShared() + "\n" + shared.getUserPhoneShared() + "\n" + shared.getUserAddressShared();
         orderedItems = "";
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(user_key);
+        allOrdersReference = FirebaseDatabase.getInstance().getReference("orders");
         metrics = getResources().getDisplayMetrics();
         width = metrics.widthPixels;
         height = metrics.heightPixels;
@@ -201,6 +217,7 @@ public class CartFragment extends Fragment {
                 }
                 totalPriceText.setText("Total" + "\n" + "Rs. " + String.valueOf(total));
                 cartRecyclerView.setAdapter(new CartAdapter(getContext(),cartList,CartFragment.this));
+                progressBar.setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

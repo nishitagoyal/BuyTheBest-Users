@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,12 +33,15 @@ public class OrdersPlacedActivity extends AppCompatActivity {
     Shared shared;
     String user_key;
     List<OrderPlaced> orderPlacedList;
+    List<OrderPlaced> reverseOrderPlacedList;
+    ProgressBar progressBar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders_placed);
         initViews();
-
     }
 
     private void initViews() {
@@ -46,6 +51,8 @@ public class OrdersPlacedActivity extends AppCompatActivity {
         user_key = shared.getUserKeyShared();
         orderPlaceRef = rootnode.getReference("users").child(user_key).child("orders_placed");
         orderPlacedList = new ArrayList<>();
+        reverseOrderPlacedList = new ArrayList<>();
+        progressBar = findViewById(R.id.orders_progress);
         populateList();
     }
 
@@ -58,12 +65,16 @@ public class OrdersPlacedActivity extends AppCompatActivity {
                     OrderPlaced orderPlaced = ds.getValue(OrderPlaced.class);
                     orderPlacedList.add(orderPlaced);
                 }
-                orderPlacedRecyclerView.setAdapter(new OrdersPlacedAdapter(OrdersPlacedActivity.this, orderPlacedList));
+                for(int i=orderPlacedList.size()-1; i>=0; i--)
+                {
+                    reverseOrderPlacedList.add(orderPlacedList.get(i));
+                }
+                orderPlacedRecyclerView.setAdapter(new OrdersPlacedAdapter(OrdersPlacedActivity.this, reverseOrderPlacedList));
+                progressBar.setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(OrdersPlacedActivity.this, "Failed to fetch cart details. Please try again later.", Toast.LENGTH_LONG).show();
-
             }
         });
     }
