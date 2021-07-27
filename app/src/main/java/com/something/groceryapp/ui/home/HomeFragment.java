@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -92,6 +93,10 @@ public class HomeFragment extends Fragment {
                     Categories categories = ds.getValue(Categories.class);
                     categoriesList.add(categories);
                 }
+                GridLayoutManager layoutManager=new GridLayoutManager(getContext(),4);
+
+                // at last set adapter to recycler view.
+                categoriesRecyclerView.setLayoutManager(layoutManager);
                 categoriesRecyclerView.setAdapter(new CategoriesAdapter(getContext(),categoriesList,this::OnItemClick));
                 progressBar.setVisibility(View.GONE);
             }

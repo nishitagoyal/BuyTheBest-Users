@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGreen"
+    android:background="@color/dullWhite"
     tools:context=".activity.RegisterActivity">
 
     <RelativeLayout
@@ -33,7 +33,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/grocery"
+                    android:src="@mipmap/btb_launcher_round"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="5dp" />
 

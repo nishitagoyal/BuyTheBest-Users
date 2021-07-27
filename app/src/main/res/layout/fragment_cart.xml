@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/rootLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.cart.CartFragment"
-    android:layout_marginBottom="?attr/actionBarSize">
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:background="@color/dullWhite">
 
-    <ProgressBar
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cart_progress"
-        android:layout_centerInParent="true"/>
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:id="@+id/empty_cart"
-        android:visibility="gone"
-        android:src="@drawable/cart_is_empty"
-        android:layout_centerInParent="true"/>
+        app:layout_constraintTop_toTopOf="@id/rootLayout"
+        app:layout_constraintStart_toStartOf="@id/rootLayout"
+        android:text="Your Cart"
+        android:textSize="20sp"
+        android:textColor="@color/darkGreen"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartListRecyclerView"
-        android:layout_width="391dp"
+        android:layout_width="match_parent"
         android:layout_height="536dp"
-        android:layout_above="@+id/place_order_card"
-        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toBottomOf="@id/txt_heading"
+        app:layout_constraintStart_toStartOf="@id/rootLayout"
         android:layout_marginStart="10dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="10dp"
@@ -37,12 +40,11 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="@id/rootLayout"
+        app:layout_constraintEnd_toEndOf="@id/rootLayout"
         android:layout_margin="20dp"
         android:id="@+id/place_order_card"
-        android:visibility="gone"
-        app:cardCornerRadius="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true">
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,4 +80,4 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,16 +6,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment"
-    android:layout_marginBottom="?attr/actionBarSize">
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:background="@color/dullWhite">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome To Buy The Best"
+            android:textSize="20sp"
+            android:textColor="@color/darkGreen"
+            android:fontFamily="@font/comfortaa_bold"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
             android:layout_margin="10dp"
             android:id="@+id/viewPager"/>
 
@@ -23,36 +38,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shop_by_categories"
-            android:textColor="@color/black"
+            android:textColor="@color/darkGreen"
             android:layout_marginStart="20dp"
-            android:fontFamily="@font/lato_bold"
+            android:fontFamily="@font/comfortaa_bold"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
             android:textSize="20sp"/>
 
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesListRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:id="@+id/categories_progress"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categoriesListRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3" />
-
-
-        </RelativeLayout>
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
     </LinearLayout>
 

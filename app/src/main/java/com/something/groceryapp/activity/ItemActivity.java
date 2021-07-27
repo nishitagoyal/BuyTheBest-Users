@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,7 @@ import com.something.groceryapp.adapter.ItemsAdapter;
 import com.something.groceryapp.model.Cart;
 import com.something.groceryapp.model.GroceryItem;
 import com.something.groceryapp.model.Shared;
+import com.something.groceryapp.model.Shared;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -38,17 +40,20 @@ public class ItemActivity extends AppCompatActivity {
     DatabaseReference reference, itemReference, addToCartReference;
     String categoryName,categoryKey;
     Shared shared;
+    TextView txt_item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         categoryName = intent.getStringExtra("categoryName");
         categoryKey = intent.getStringExtra("categoryKey");
-        actionBar.setTitle(categoryName);
+        txt_item = findViewById(R.id.txt_heading);
+        txt_item.setText(categoryName);
+//        actionBar.setTitle(categoryName);
         initViews();
     }
 
