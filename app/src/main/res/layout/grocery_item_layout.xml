@@ -14,14 +14,27 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_gravity="center_horizontal">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/imageLoader"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/itemImage"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:src="@drawable/oil"
             android:scaleType="fitXY" />
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,12 +77,12 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:text="Add to Cart"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:background="@color/darkGreen"
-            android:layout_margin="10dp"
+            android:layout_marginVertical="10dp"
             android:id="@+id/item_add_cart_button"/>
 
     </LinearLayout>

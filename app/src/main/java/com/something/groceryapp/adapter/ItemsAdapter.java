@@ -55,12 +55,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         shared = new Shared(mContext);
         holder.itemText.setText(groceryItem.getItemName() + " - " + groceryItem.getItemQty());
         holder.itemPrice.setText(groceryItem.getItemPrice());
-
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.addButton.setText("Added");
-                holder.addButton.setEnabled(false);
                 String itemName = holder.itemText.getText().toString();
                 String itemPrice = holder.itemPrice.getText().toString();
                 int price = Integer.parseInt(itemPrice.substring(4,itemPrice.length()));

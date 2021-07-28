@@ -25,6 +25,26 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"/>
 
+    <ProgressBar
+        android:id="@+id/cart_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cartListRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/cartListRecyclerView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/empty_cart"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/cart_is_empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cartListRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/cartListRecyclerView"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartListRecyclerView"
         android:layout_width="match_parent"

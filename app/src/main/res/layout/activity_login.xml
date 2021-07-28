@@ -32,21 +32,43 @@
                 android:layout_gravity="center"
                 android:src="@mipmap/btb_launcher_round" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etUsernameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email Id"
-                android:fontFamily="@font/lato"
-                android:id="@+id/username_et"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                app:boxBackgroundColor="@color/white">
 
-            <EditText
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email Id"
+                    android:fontFamily="@font/lato"
+                    android:id="@+id/username_et" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPasswordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password_hint"
-                android:fontFamily="@font/lato"
-                android:id="@+id/password_et"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                app:passwordToggleTint="@color/green"
+                app:boxBackgroundColor="@color/white"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:fontFamily="@font/lato"
+                    android:id="@+id/password_et" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:layout_width="match_parent"

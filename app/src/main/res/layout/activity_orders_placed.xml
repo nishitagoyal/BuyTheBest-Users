@@ -1,32 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/rootLayout"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.cart.CartFragment">
+    tools:context=".ui.cart.CartFragment"
+    android:background="@color/dullWhite">
 
-    <ProgressBar
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/orders_progress"
-        android:layout_centerInParent="true"/>
+        app:layout_constraintTop_toTopOf="@id/rootLayout"
+        app:layout_constraintStart_toStartOf="@id/rootLayout"
+        android:text="Your Orders"
+        android:textSize="20sp"
+        android:textColor="@color/darkGreen"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:id="@+id/empty_cart"
-        android:visibility="gone"
-        android:src="@drawable/cart_is_empty"
-        android:layout_centerInParent="true"/>
+    <ProgressBar
+        android:id="@+id/orders_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="@+id/ordersListRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ordersListRecyclerView"
+        app:layout_constraintTop_toTopOf="@+id/ordersListRecyclerView" />
+
+<!--    <ImageView-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:id="@+id/empty_cart"-->
+<!--        android:visibility="gone"-->
+<!--        android:src="@drawable/cart_is_empty"-->
+<!--        android:layout_centerInParent="true"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersListRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="399dp"
+        android:layout_height="711dp"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_heading" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

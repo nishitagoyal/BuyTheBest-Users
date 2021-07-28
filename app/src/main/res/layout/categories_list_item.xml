@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
     android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="5dp"
     android:layout_marginBottom="2dp"
     app:cardCornerRadius="10dp">
 
@@ -14,14 +15,29 @@
         android:padding="5dp"
         android:layout_gravity="center"
         android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/imageLoader"/>
+
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/categoriesImage"
                 android:layout_gravity="center"
                 android:src="@drawable/edible_oil"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY" />
+
+        </RelativeLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
