@@ -39,6 +39,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         android:src="@drawable/cart_is_empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cartListRecyclerView"
@@ -63,6 +64,7 @@
         app:layout_constraintBottom_toBottomOf="@id/rootLayout"
         app:layout_constraintEnd_toEndOf="@id/rootLayout"
         android:layout_margin="20dp"
+        android:visibility="gone"
         android:id="@+id/place_order_card"
         app:cardCornerRadius="20dp">
 

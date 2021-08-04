@@ -194,6 +194,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(LoginActivity.this, "Failed. Please try again later.", Toast.LENGTH_LONG).show();
 
             }
         });

@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     registerButton.setEnabled(true);
                     addUserDialog.dismiss();
-                    Toast.makeText(RegisterActivity.this, "This email is already registered. Try with different email.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Failed. Please try again later.", Toast.LENGTH_LONG).show();
                 }
             } });
     }
@@ -96,6 +96,10 @@ public class RegisterActivity extends AppCompatActivity {
                     intent.putExtra("userNumber", phoneNo);
                     intent.putExtra("userAddress", address);
                     intent.putExtra("userKey", user_key);
+                    shared.setUserKeyShared(user_key);
+                    shared.setUserNameShared(name);
+                    shared.setUserPhoneShared(phoneNo);
+                    shared.setUserAddressShared(address);
                     startActivity(intent);
                     finish();
                 }

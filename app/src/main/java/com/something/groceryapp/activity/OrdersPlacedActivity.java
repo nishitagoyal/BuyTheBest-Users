@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class OrdersPlacedActivity extends AppCompatActivity {
     List<OrderPlaced> orderPlacedList;
     List<OrderPlaced> reverseOrderPlacedList;
     ProgressBar progressBar;
+    ImageView emptyCartImage;
+
 
 
     @Override
@@ -53,6 +56,7 @@ public class OrdersPlacedActivity extends AppCompatActivity {
         orderPlacedList = new ArrayList<>();
         reverseOrderPlacedList = new ArrayList<>();
         progressBar = findViewById(R.id.orders_progress);
+        emptyCartImage = findViewById(R.id.empty_orders);
         populateList();
     }
 
@@ -65,6 +69,8 @@ public class OrdersPlacedActivity extends AppCompatActivity {
                     OrderPlaced orderPlaced = ds.getValue(OrderPlaced.class);
                     orderPlacedList.add(orderPlaced);
                 }
+                if(orderPlacedList.isEmpty())
+                    emptyCartImage.setVisibility(View.VISIBLE);
                 for(int i=orderPlacedList.size()-1; i>=0; i--)
                 {
                     reverseOrderPlacedList.add(orderPlacedList.get(i));
@@ -75,6 +81,8 @@ public class OrdersPlacedActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(OrdersPlacedActivity.this, "Failed to fetch cart details. Please try again later.", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+
             }
         });
     }

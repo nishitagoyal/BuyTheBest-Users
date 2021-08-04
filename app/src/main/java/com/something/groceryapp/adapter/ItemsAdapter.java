@@ -55,6 +55,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         shared = new Shared(mContext);
         holder.itemText.setText(groceryItem.getItemName() + " - " + groceryItem.getItemQty());
         holder.itemPrice.setText(groceryItem.getItemPrice());
+        if(groceryItem.getItemAvailability().equalsIgnoreCase("Out of stock"))
+        {
+            holder.itemAvailibility.setVisibility(View.VISIBLE);
+            holder.addButton.setEnabled(false);
+        }
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +86,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         private TextView itemPrice;
         private Button addButton;
         private ElegantNumberButton elegantNumberButton;
+        private ImageView itemAvailibility;
 
         public ItemsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +95,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
             itemPrice = itemView.findViewById(R.id.itemPrice);
             addButton = itemView.findViewById(R.id.item_add_cart_button);
             elegantNumberButton = itemView.findViewById(R.id.qty_elegant_number);
+            itemAvailibility = itemView.findViewById(R.id.itemAvailabilityIV);
         }
     }
 }

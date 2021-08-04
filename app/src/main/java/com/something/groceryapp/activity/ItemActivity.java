@@ -3,11 +3,16 @@ package com.something.groceryapp.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -37,23 +42,24 @@ public class ItemActivity extends AppCompatActivity {
     ItemsAdapter itemsAdapter;
     RecyclerView itemRecyclerView;
     FirebaseDatabase rootnode;
+    ImageView emptyCartImage;
+    ProgressBar progressBar;
     DatabaseReference reference, itemReference, addToCartReference;
     String categoryName,categoryKey;
     Shared shared;
     TextView txt_item;
+    SearchView searchView;
+    CardView searchCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         categoryName = intent.getStringExtra("categoryName");
         categoryKey = intent.getStringExtra("categoryKey");
         txt_item = findViewById(R.id.txt_heading);
         txt_item.setText(categoryName);
-//        actionBar.setTitle(categoryName);
         initViews();
     }
 
@@ -66,6 +72,10 @@ public class ItemActivity extends AppCompatActivity {
         reference = rootnode.getReference("categories");
         addToCartReference = rootnode.getReference("users");
         shared = new Shared(ItemActivity.this);
+        emptyCartImage = findViewById(R.id.empty_item);
+        progressBar = findViewById(R.id.item_progress);
+        searchView = findViewById(R.id.search_view);
+        searchCardView = findViewById(R.id.search_cardView);
         populateList();
 
     }
@@ -81,11 +91,18 @@ public class ItemActivity extends AppCompatActivity {
                     GroceryItem groceryItem = ds.getValue(GroceryItem.class);
                     groceryItems.add(groceryItem);
                 }
+                if(groceryItems.isEmpty()) {
+                    emptyCartImage.setVisibility(View.VISIBLE);
+                    searchCardView.setVisibility(View.GONE);
+                }
+
                 itemRecyclerView.setAdapter(new ItemsAdapter(ItemActivity.this, groceryItems,ItemActivity.this));
+                progressBar.setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ItemActivity.this, "Failed. Please try again later.", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
             }
         });
 
@@ -120,4 +137,37 @@ public class ItemActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(searchView!=null)
+        {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    search(newText);
+                    return false;
+                }
+            });
+        }
+    }
+
+    private void search(String str) {
+        List<GroceryItem> itemSearchList = new ArrayList<>();
+        for(GroceryItem itemHelperObject: groceryItems)
+        {
+            if(itemHelperObject.getItemName().toLowerCase().contains(str.toLowerCase()))
+                itemSearchList.add(itemHelperObject);
+        }
+        itemRecyclerView.setAdapter(new ItemsAdapter(ItemActivity.this, itemSearchList,ItemActivity.this));
+
+
+    }
+
 }

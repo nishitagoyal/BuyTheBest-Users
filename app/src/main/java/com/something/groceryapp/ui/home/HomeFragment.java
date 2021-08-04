@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -94,8 +95,6 @@ public class HomeFragment extends Fragment {
                     categoriesList.add(categories);
                 }
                 GridLayoutManager layoutManager=new GridLayoutManager(getContext(),4);
-
-                // at last set adapter to recycler view.
                 categoriesRecyclerView.setLayoutManager(layoutManager);
                 categoriesRecyclerView.setAdapter(new CategoriesAdapter(getContext(),categoriesList,this::OnItemClick));
                 progressBar.setVisibility(View.GONE);
@@ -114,7 +113,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), "Failed. Please try again later.", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,8 +13,6 @@
         android:id="@+id/txt_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/rootLayout"
-        app:layout_constraintStart_toStartOf="@id/rootLayout"
         android:text="Your Orders"
         android:textSize="20sp"
         android:textColor="@color/darkGreen"
@@ -27,30 +25,24 @@
         android:id="@+id/orders_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="@+id/ordersListRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/ordersListRecyclerView"
-        app:layout_constraintTop_toTopOf="@+id/ordersListRecyclerView" />
+        android:layout_centerInParent="true" />
 
-<!--    <ImageView-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="300dp"-->
-<!--        android:id="@+id/empty_cart"-->
-<!--        android:visibility="gone"-->
-<!--        android:src="@drawable/cart_is_empty"-->
-<!--        android:layout_centerInParent="true"/>-->
+    <ImageView
+        android:id="@+id/empty_orders"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:src="@drawable/no_order_place" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersListRecyclerView"
-        android:layout_width="399dp"
-        android:layout_height="711dp"
-        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_heading" />
+        android:layout_below="@+id/txt_heading" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

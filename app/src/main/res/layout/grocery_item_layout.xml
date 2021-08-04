@@ -7,84 +7,106 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:id="@+id/imageLoader"/>
-
-        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/itemImage"
-            android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:layout_gravity="center"
-            android:src="@drawable/oil"
-            android:scaleType="fitXY" />
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/image_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/imageLoader"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/itemImage"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/oil"
+                    android:scaleType="fitXY" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/itemTitle"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_below="@id/image_relative"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/itemPrice"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_below="@id/itemTitle"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"/>
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                app:initialNumber="1"
+                app:finalNumber="20"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:textColor="@color/white"
+                android:layout_below="@+id/itemPrice"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/qty_elegant_number"
+                app:backGroundColor="@color/lightGreen"
+                app:backgroundDrawable="@drawable/spinner_border"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to Cart"
+                android:textColor="@color/white"
+                android:layout_below="@id/qty_elegant_number"
+                android:layout_centerHorizontal="true"
+                android:background="@color/darkGreen"
+                android:layout_marginVertical="10dp"
+                android:id="@+id/item_add_cart_button"/>
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:id="@+id/itemTitle"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:id="@+id/itemPrice"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"/>
-
-        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            app:initialNumber="1"
-            app:finalNumber="20"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:textColor="@color/white"
-            android:gravity="center"
-            android:id="@+id/qty_elegant_number"
-            app:backGroundColor="@color/lightGreen"
-            app:backgroundDrawable="@drawable/spinner_border"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add to Cart"
-            android:textColor="@color/white"
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
-            android:background="@color/darkGreen"
-            android:layout_marginVertical="10dp"
-            android:id="@+id/item_add_cart_button"/>
+            android:visibility="gone"
+            android:src="@drawable/out_of_stock"
+            android:id="@+id/itemAvailabilityIV"/>
 
-    </LinearLayout>
+    </FrameLayout>
+
+
 
 </androidx.cardview.widget.CardView>

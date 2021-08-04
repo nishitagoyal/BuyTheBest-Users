@@ -221,7 +221,8 @@ public class CartFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getContext(), "Failed. Please try again later.", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
             }
         });
 
